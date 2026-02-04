@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musary | Arymus</title>
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            scroll-behavior: smooth;
+        }
 
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Page 1: Musary + Flowers */
+        #home {
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: #d63384;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Page 2: Shayari */
+        #shayari {
+            background-color: #fdf2f8;
+            color: #4a4a4a;
+        }
+
+        .shayari-box {
+            max-width: 600px;
+            font-style: italic;
+            font-size: 1.5rem;
+            line-height: 1.8;
+            border-left: 5px solid #d63384;
+            padding-left: 30px;
+        }
+
+        /* Page 3: Profile */
+        #profile {
+            background-color: #ffffff;
+        }
+
+        .profile-pic {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .titles h2 {
+            margin: 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .arymus { color: #d63384; font-size: 2rem; }
+        .musary-sub { color: #888; font-size: 1.2rem; }
+
+        /* Navigation Dots */
+        .nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .nav a {
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: #d63384;
+            margin: 10px;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <a href="#home"></a>
+        <a href="#shayari"></a>
+        <a href="#profile"></a>
+    </div>
+
+    <section id="home">
+        <h1>Musary</h1>
+        <p>Welcome to my beautiful world</p>
+    </section>
+
+    <section id="shayari">
+        <div class="shayari-box">
+            "Kuch hosh nahi rehta, kuch dhyan nahi rehta,<br>
+            Insaan mohabbat mein, insaan nahi rehta..."
+            <br><br>
+            "Tumhari muskurahat hai har dard ki dawa,<br>
+            Tumhe dekhe bina ab dil nahi rehta."
+        </div>
+    </section>
+
+    <section id="profile">
+        <img src="1000273189.png" alt="My Photo" class="profile-pic">
+        <div class="titles">
+            <h2 class="arymus">Arymus</h2>
+            <h2 class="musary-sub">Musary</h2>
+        </div>
+    </section>
+
+</body>
+</html>
