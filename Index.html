@@ -1,105 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitik & Nitika ❤️</title>
+    <title>A Question for You... 💌</title>
     <style>
-        /* General Styles */
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&family=Great+Vibes&display=swap');
+
+        * {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            background-color: #fff5f5;
-            color: #4a0e0e;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .page {
-            display: none;
-            height: 100vh;
-            width: 100vw;
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 75, 110, 0.15);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            position: relative;
+            min-height: 400px;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            background-size: cover;
-            background-position: center;
             transition: all 0.5s ease;
+            z-index: 10;
         }
 
-        .active { display: flex; }
-
-        /* Page 1: Roses and Birds Background */
-        #page1 {
-            background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), 
-                              url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&q=80&w=1000'); /* High quality flower/nature bg */
+        h1 {
+            color: #ff4b6e;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Dancing Script', cursive;
         }
 
-        /* Page 2: Soft Aesthetic */
-        #page2 { background: #ffe4e1; }
+        #proposalMsg {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #d6335c;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 400;
+        }
 
-        /* Page 3: Elegant Final */
-        #page3 { background: #fdf2f2; }
-
-        h1 { font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-        p { font-size: 1.2rem; max-width: 600px; line-height: 1.6; }
-
-        /* Buttons */
-        .btn {
-            margin-top: 30px;
-            padding: 15px 40px;
+        p {
+            color: #555;
             font-size: 1.1rem;
-            background-color: #ff4d6d;
-            color: white;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 30px;
             border: none;
             border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
-            transition: transform 0.2s;
-        }
-        .btn:hover { transform: scale(1.05); background-color: #ff758f; }
-
-        /* Image Frame Styling */
-        .photo-frame {
-            border: 15px solid #fff;
-            outline: 2px solid #ff4d6d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-height: 400px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            outline: none;
         }
 
-        .heart { color: #ff4d6d; font-size: 1.5rem; }
+        .btn-yes {
+            background: #ff4b6e;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 75, 110, 0.3);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.05);
+            background: #e63e5d;
+        }
+
+        .btn-no {
+            background: #f1f1f1;
+            color: #666;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .pop-in {
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-heart {
+            position: absolute;
+            color: #ff4b6e;
+            opacity: 0.6;
+            top: 100vh;
+            animation: floatUp linear forwards;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-120vh) rotate(360deg);
+            }
+        }
+
+        /* Loading */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff4b6e;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .shayari-box {
+            background: #fff0f3;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px dashed #ff4b6e;
+            margin-bottom: 2rem;
+            font-style: italic;
+            color: #d6335c;
+        }
+
+        .heart-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .valentine-media {
+            max-width: 150px;
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .plead-msg {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            color: #ff4b6e;
+            font-size: 0.95rem;
+            font-weight: 500;
+            min-height: 24px;
+            /* Prevent layout jump */
+            transition: opacity 0.3s;
+        }
+
+        .no-bg {
+            box-shadow: none !important;
+            background: transparent !important;
+            border-radius: 0 !important;
+        }
+
+        .emoji-icon {
+            height: 1.2em;
+            vertical-align: sub;
+            margin: 0 4px;
+            display: inline-block;
+        }
     </style>
 </head>
+
 <body>
+    <div class="card" id="mainCard">
+        <div class="loader" id="loader"></div>
 
-    <div id="page1" class="page active">
-        <h1>Nitik and Niku ❤️</h1>
-        <p>A beautiful journey of two souls...</p>
-        <button class="btn" onclick="nextPage(2)">Click here to open</button>
+        <!-- Error State -->
+        <div id="errorState" class="hidden">
+            <h1>Oops! 💔</h1>
+            <p id="errorMsg">Something went wrong...</p>
+        </div>
+
+        <!-- Stage 1: Proposal -->
+        <div id="stage1" class="hidden fade-in">
+            <h1>Hey <span id="partnerName"></span> <img
+                    src="https://em-content.zobj.net/source/apple/391/sparkling-heart_1f496.png" class="emoji-icon"
+                    alt="💖"></h1>
+            <p id="proposalMsg">Will you be my Valentine?</p>
+            <div class="btn-group">
+                <button class="btn-yes" onclick="nextStage()">Hanji <img
+                        src="https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png" class="emoji-icon"
+                        alt="❤️"></button>
+                <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">Nahi <img
+                        src="https://em-content.zobj.net/source/apple/391/see-no-evil-monkey_1f648.png"
+                        class="emoji-icon" alt="🙈"></button>
+            </div>
+            <p id="pleadMessage" class="plead-msg"></p>
+        </div>
+
+        <!-- Stage 2: Confirmation -->
+        <div id="stage2" class="hidden">
+            <video src="kiss.mp4" autoplay loop muted playsinline class="valentine-media"></video>
+            <h1>I Knew It! <img src="https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png"
+                    class="emoji-icon" alt="❤️"></h1>
+            <p> Aap mujhse pyaar karte ho! hehe <img
+                    src="https://em-content.zobj.net/source/apple/391/see-no-evil-monkey_1f648.png" class="emoji-icon"
+                    alt="🙈"><br>
+                accha ab niche button pe click karo
+            </p>
+            <button class="btn-yes" onclick="goToShayari()">For you <img
+                    src="https://em-content.zobj.net/source/apple/391/love-letter_1f48c.png" class="emoji-icon"
+                    alt="💌"></button>
+        </div>
+
+        <!-- Stage 3: Shayari -->
+        <div id="stage3" class="hidden">
+            <img src="doggy.png" alt="Cute Doggy" class="valentine-media no-bg">
+            <div class="shayari-box" id="shayariText"></div>
+            <button class="btn-yes" onclick="nextShayari()">Next <img
+                    src="https://em-content.zobj.net/source/apple/391/sparkling-heart_1f496.png" class="emoji-icon"
+                    alt="💖"></button>
+        </div>
     </div>
 
-    <div id="page2" class="page">
-        <h1>To My Love,</h1>
-        <p>
-            My sweetheart,Niku ji  you are the most precious person in my life. 
-            I want to apologize for every mistake I've ever made. 
-            No matter the ups and downs, my heart always belongs to you. 
-            Thank you for being my strength and my happiness.
-        </p>
-        <div class="heart">❤️❤️❤️</div>
-        <button class="btn" onclick="nextPage(3)">Click to see us</button>
-    </div>
+    <script>
+        // Use document.body to spawn hearts
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // 2-5s
+            heart.style.fontSize = Math.random() * 1.5 + 0.5 + 'rem'; // 0.5-2rem
 
-    <div id="page3" class="page">
-        <img src="content://media/external/downloads/1000277480" alt="Our Memory" class="photo-frame">
-        
-        <p style="font-style: italic; font-weight: bold;">
-            "Tere bina kaise jiyein hum, <br>
-            Har saans mein tera naam hota hai..."
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Spawn hearts every 800ms to be less distracting but still there
+        setInterval(createFloatingHeart, 800);
+
+        // Constants & Data
+        const shayaris = [
+            "Aap hi ke bina hoon kyun bechain?<br>Aap hi kyun meri zaroorat hain?<br>Wehm itna haseen nahi hota,<br>Waakai aap khoobsurat hain <img src='https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png' class='emoji-icon' alt='❤️'>",
+            "Teri dhadkan hi zindagi ka kissa hai mera,<br>Tu zindagi ka ek ahem hissa hai mera,<br>Meri mohabbat tujhse, sirf lafzon ki nahi,<br>Teri rooh se rooh ka rishta hai mera. <img src='https://em-content.zobj.net/source/apple/391/two-hearts_1f495.png' class='emoji-icon' alt='💕'>",
+            "Kitna Pyar Hai Tumse Yeh Jan Lo,<br>Tum Hi Zindagi Ho Meri Yeh Man Lo,<br>Tumhe Dene Ko Mere Paas Kuchh Nahi,<br>Bas Ek Jaan Hai Jab Ji Chaye Mang Lo! <img src='https://em-content.zobj.net/source/apple/391/rose_1f339.png' class='emoji-icon' alt='🌹'>",
+            "Nazrein mile to pyar ho jata hai,<br>Palke uthe to izhaar ho jata hai,<br>Na jaane kya kashish hai aapki chahat mein,<br>Ki koi anjaan bhi hamara haqdaar ho jata hai. <img src='https://em-content.zobj.net/source/apple/391/smiling-face-with-heart-eyes_1f60d.png' class='emoji-icon' alt='😍'>"
+        ];
+
+        const noMessages = [
+            "Soch lo na please <img src='https://em-content.zobj.net/source/apple/391/crying-face_1f622.png' class='emoji-icon' alt='😢'>",
+            "Ek baar aur soch lo <img src='https://em-content.zobj.net/source/apple/391/broken-heart_1f494.png' class='emoji-icon' alt='💔'>",
+            "Man jao na... <img src='https://em-content.zobj.net/source/apple/391/pleading-face_1f97a.png' class='emoji-icon' alt='🥺'>",
+            
+            "Packet mein chocolates bhi hain! <img src='https://em-content.zobj.net/source/apple/391/chocolate-bar_1f36b.png' class='emoji-icon' alt='🍫'>",
+            "Please... <img src='https://em-content.zobj.net/source/apple/391/pleading-face_1f97a.png' class='emoji-icon' alt='🥺'><img src='https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png' class='emoji-icon' alt='❤️'>",
+            "Aese mat karo na... <img src='https://em-content.zobj.net/source/apple/391/wilted-flower_1f940.png' class='emoji-icon' alt='🥀'>",
+            "Kitna bhav khaogi? <img src='https://em-content.zobj.net/source/apple/391/pleading-face_1f97a.png' class='emoji-icon' alt='🥺'>",
+            "Arey baba maan jao na! <img src='https://em-content.zobj.net/source/apple/391/pleading-face_1f97a.png' class='emoji-icon' alt='🥺'>",
+            "Pakka promise, khush rakhunga! <img src='https://em-content.zobj.net/source/apple/391/crossed-fingers_1f91e.png' class='emoji-icon' alt='🤞'>",
+            "Itna bhav mat khao! <img src='https://em-content.zobj.net/source/apple/391/unamused-face_1f612.png' class='emoji-icon' alt='😒'>",
+            "Mera dil toot jayega... <img src='https://em-content.zobj.net/source/apple/391/broken-heart_1f494.png' class='emoji-icon' alt='💔'>",
+            "Main ro dunga ab... <img src='https://em-content.zobj.net/source/apple/391/loudly-crying-face_1f62d.png' class='emoji-icon' alt='😭'>",
+            "Bohot pyaar karta hoon yaar! <img src='https://em-content.zobj.net/source/apple/391/red-heart_2764-fe0f.png' class='emoji-icon' alt='❤️'>",
+            "Socho mat, bas haan kardo! <img src='https://em-content.zobj.net/source/apple/391/see-no-evil-monkey_1f648.png' class='emoji-icon' alt='🙈'>"
+        ];
+
+        let currentShayariParams = 0;
+        let noCount = 0;
+
+        // Init
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            if (!id) {
+                showError("Invalid Link 💔");
+                return;
+            }
+
+            try {
+                const response = await fetch(`load.php?id=${id}`);
+                // Check if response is OK
+                if (!response.ok) throw new Error('Network response was not ok');
+
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    document.getElementById('loader').classList.add('hidden');
+                    setupStage1(result.data);
+                } else {
+                    showError("Valentine not found 😢");
+                }
+            } catch (err) {
+                console.error(err);
+                showError("Something went wrong 🥀");
+            }
+        });
+
+        function setupStage1(data) {
+            document.getElementById('partnerName').innerText = data.name;
+            // Keep default text if message is empty
+            if (data.message && data.message.trim() !== "") {
+                document.getElementById('proposalMsg').innerText = data.message;
+            }
+            document.getElementById('stage1').classList.remove('hidden');
+        }
+
+        function showError(msg) {
+            document.getElementById('loader').classList.add('hidden');
+            document.getElementById('errorState').classList.remove('hidden');
+            document.getElementById('errorMsg').innerText = msg;
+        }
+
+        // Logic
+        function moveNoButton() {
+            const btn = document.getElementById('noBtn');
+            const card = document.getElementById('mainCard');
+            const pleadMsg = document.getElementById('pleadMessage');
+
+            // Show new message
+            pleadMsg.innerHTML = noMessages[noCount % noMessages.length];
+            pleadMsg.classList.add('fade-in');
+            // Reset animation
+            setTimeout(() => pleadMsg.classList.remove('fade-in'), 500);
+
+            noCount++;
+
+            // Get viewport dimensions
+            const maxX = window.innerWidth - btn.offsetWidth - 20; // 20px padding
+            const maxY = window.innerHeight - btn.offsetHeight - 20;
+
+            let newX, newY;
+            let safe = false;
+            let attempts = 0;
+
+            // Try to find a spot that doesn't overlap the card
+            while (!safe && attempts < 20) {
+                newX = Math.random() * maxX;
+                newY = Math.random() * maxY;
+
+                // Check collision with card
+                const cardRect = card.getBoundingClientRect();
+
+                // Simple AABB collision detection
+                // Check if button rect (newX, newY) overlaps cardRect
+                if (
+                    newX + btn.offsetWidth < cardRect.left ||
+                    newX > cardRect.right ||
+                    newY + btn.offsetHeight < cardRect.top ||
+                    newY > cardRect.bottom
+                ) {
+                    safe = true;
+                }
+                attempts++;
+            }
+
+            // Apply position
+            btn.style.position = 'fixed';
+            btn.style.left = Math.max(10, newX) + 'px'; // Ensure at least 10px from edge
+            btn.style.top = Math.max(10, newY) + 'px';
+            btn.style.zIndex = '1000'; // Ensure it's on top
+        }
+
+        function nextStage() {
+            // Burst of hearts
+            for (let i = 0; i < 30; i++) setTimeout(createFloatingHeart, i * 50);
+
+            const stage1 = document.getElementById('stage1');
+            stage1.style.opacity = '0';
+            setTimeout(() => {
+                stage1.classList.add('hidden');
+                const stage2 = document.getElementById('stage2');
+                stage2.classList.remove('hidden');
+                stage2.classList.add('pop-in');
+            }, 500);
+        }
+
+        function goToShayari() {
+            const stage2 = document.getElementById('stage2');
+            stage2.classList.add('hidden');
+
+            const stage3 = document.getElementById('stage3');
+            stage3.classList.remove('hidden');
+            stage3.classList.add('pop-in');
+
+            // Show first shayari
+            document.getElementById('shayariText').innerHTML = shayaris[0];
+        }
+
+        function nextShayari() {
+            currentShayariParams++;
+            const text = shayaris[currentShayariParams % shayaris.length];
+
+            const box = document.getElementById('shayariText');
+            box.style.opacity = '0';
+
+            setTimeout(() => {
+                box.innerHTML = text;
+                box.style.opacity = '1';
+                box.classList.add('pop-in');
+                setTimeout(() => box.classList.remove('pop-in'), 500);
+            }, 300);
+        }
+    </script>
+</body>
+
+</html>            Har saans mein tera naam hota hai..."
         </p>
         
         <p>You are my forever. <br> <strong>Nitik and nitika</strong></p>
