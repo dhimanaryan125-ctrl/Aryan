@@ -3,89 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prescription for My Bestie</title>
+    <title>Musary & Arymus | Our Forever</title>
     <style>
+        :root {
+            --pink: #ffafbd;
+            --rose: #ffc3a0;
+            --text-color: #5d5d5d;
+        }
+
         body {
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--pink), var(--rose));
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            color: #5d4037;
+            overflow: hidden;
+            color: var(--text-color);
         }
+
         .card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 3rem;
+            border-radius: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 500px;
-            border-top: 8px solid #ff8a80;
+            text-align: center;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            z-index: 10;
         }
-        h1 { color: #d32f2f; margin-bottom: 10px; }
-        .shayari {
-            font-style: italic;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #d63384;
+        }
+
+        .names {
+            font-weight: bold;
             font-size: 1.2rem;
-            margin: 20px 0;
+            letter-spacing: 2px;
+            color: #ff6b6b;
+        }
+
+        p {
             line-height: 1.6;
-            color: #3e2723;
+            font-style: italic;
         }
-        .rx-box {
-            background: #fff9f9;
-            border: 1px dashed #ff8a80;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: left;
-        }
-        .heart {
-            color: #d32f2f;
-            font-size: 50px;
-            animation: beat .25s infinite alternate;
-        }
-        @keyframes beat {
-            to { transform: scale(1.2); }
-        }
-        .btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #ff8a80;
+
+        .heart-btn {
+            background: #ff6b6b;
             color: white;
             border: none;
-            border-radius: 25px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .heart-btn:hover {
+            transform: scale(1.1);
+            background: #ff4757;
+        }
+
+        /* Floating Hearts Animation */
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            list-style: none;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            bottom: -150px;
+            animation: animate 25s linear infinite;
+        }
+
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="heart">❤️</div>
-    <h1>Dr. Bestie's Recovery Hub</h1>
-    <p>System Status: <b>Exhausted but Brilliant</b></p>
-    
-    <div class="shayari">
-        "Marham har dard ka tumhare paas hota hai,<br>
-        Thak gayi ho kaam se toh thoda muskura do,<br>
-        Tumhari ek hansi se mera har din nawaaz hota hai."
+    <div class="hearts">
+        <div class="heart" style="left: 25%; width: 80px; height: 80px; animation-delay: 0s;"></div>
+        <div class="heart" style="left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s;"></div>
+        <div class="heart" style="left: 70%; width: 20px; height: 20px; animation-delay: 4s;"></div>
+        <div class="heart" style="left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s;"></div>
+        <div class="heart" style="left: 65%; width: 20px; height: 20px; animation-delay: 0s;"></div>
     </div>
 
-    <div class="rx-box">
-        <b>Rx Prescription:</b>
-        <ul>
-            <li>Take 1 deep breath.</li>
-            <li>Logout from the world for 1 hour.</li>
-            <li>Listen to your favorite song.</li>
-            <li>Remember that you are amazing.</li>
-        </ul>
+    <div class="card">
+        <div class="names">MUSARY ❤️ ARYMUS</div>
+        <h1>Happy Propose Day!</h1>
+        <p>"In a world full of temporary things, you are my forever. From the first time we spoke to this very moment, my heart has only beat for you."</p>
+        <p><strong>Will you stay by my side, always?</strong></p>
+        <button class="heart-btn" onclick="alert('Yay! My heart is yours forever! ❤️')">Yes, Forever!</button>
     </div>
-
-    <p style="margin-top:20px;">Close your eyes, relax your mind, and let the stress fade away.</p>
-    <a href="#" class="btn" onclick="alert('Sending 1000 virtual hugs... Delivery successful!')">Click for Hugs</a>
-</div>
 
 </body>
 </html>
