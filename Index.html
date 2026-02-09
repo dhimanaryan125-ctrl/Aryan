@@ -3,181 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nameesha: My Strong Bestie</title>
+    <title>Nameesha | The Strongest Queen</title>
     <style>
         :root {
-            --pink: #ff85a2;
-            --light-pink: #fbb1bd;
-            --gold: #d4af37;
+            --primary-pink: #ffafbd;
+            --deep-rose: #ff4d6d;
+            --gold: #ffb703;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #fff5f7 0%, #fbb1bd 100%);
-            color: #4a4a4a;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #fff0f3;
+            color: #333;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* Stickers Floating in Background */
-        .sticker {
-            position: fixed;
-            font-size: 2rem;
-            z-index: -1;
-            opacity: 0.6;
-            animation: float 10s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-10vh) rotate(360deg); }
-        }
-
-        /* Sections */
+        /* Hero Section */
         section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
             text-align: center;
+            padding: 40px 20px;
         }
 
         h1 {
-            font-size: 3.5rem;
-            color: #d63384;
-            text-shadow: 2px 2px #fff;
+            font-size: 4rem;
+            color: var(--deep-rose);
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.1));
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #880e4f;
+            font-style: italic;
+        }
+
+        /* Surprise Box */
+        .message-box {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.2);
+            max-width: 700px;
+            border: 3px solid var(--primary-pink);
+            position: relative;
+        }
+
+        .message-box::before {
+            content: '✨';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 2rem;
+        }
+
+        /* Memory Game Styles */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 600px;
-            border: 2px solid var(--pink);
+            width: 80px;
+            height: 80px;
+            background: var(--deep-rose);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            color: transparent;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .card.flipped {
+            background: white;
+            color: initial;
+            transform: rotateY(180deg);
+            border: 2px solid var(--deep-rose);
         }
 
         .btn {
-            background: var(--pink);
+            background: var(--deep-rose);
             color: white;
-            padding: 15px 30px;
-            text-decoration: none;
+            padding: 15px 35px;
             border-radius: 50px;
-            margin-top: 20px;
-            transition: 0.3s;
-            display: inline-block;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: 0.4s;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn:hover { transform: scale(1.1); background: #f75c7e; }
-
-        /* Game Area */
-        #game-container {
-            width: 300px;
-            height: 400px;
-            border: 3px dashed var(--pink);
-            position: relative;
-            background: white;
-            overflow: hidden;
-            margin-top: 20px;
-            cursor: crosshair;
-        }
-
-        #basket {
-            width: 50px;
-            height: 50px;
-            position: absolute;
-            bottom: 10px;
-            font-size: 40px;
-        }
-
-        .item {
-            position: absolute;
-            font-size: 30px;
+        .btn:hover {
+            letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
         }
     </style>
 </head>
 <body>
 
-    <div class="sticker" style="left: 10%; animation-delay: 0s;">💄</div>
-    <div class="sticker" style="left: 30%; animation-delay: 3s;">✨</div>
-    <div class="sticker" style="left: 70%; animation-delay: 1s;">💅</div>
-    <div class="sticker" style="left: 90%; animation-delay: 5s;">💋</div>
-
     <section id="home">
         <h1>Nameesha</h1>
-        <p style="font-size: 1.5rem; font-weight: bold; color: #ff4d6d;">A Strong Single Girl & My Best Friend</p>
-        <div class="card">
-            <p>"To the girl who handles everything with grace and a perfect shade of lipstick."</p>
-            <a href="#tribute" class="btn">Click for a Surprise 💖</a>
+        <p class="subtitle">Strong. Independent. My Best Friend. ✨</p>
+        <a href="#surprise" class="btn">Open My Heart 💖</a>
+    </section>
+
+    <section id="surprise" style="background: #ffe5ec;">
+        <div class="message-box">
+            <h2 style="color: var(--deep-rose);">Why You're My Favorite Person</h2>
+            <p>"To Nameesha: You are a masterpiece in a world of sketches. Your strength isn't just in how you stand alone, but in how beautifully you shine while doing it. Never change your vibe, never dim your light, and always keep that cute makeup on point!"</p>
+            <p><strong>You're not just my best friend; you're my inspiration.</strong></p>
+            <a href="#game-section" class="btn">Play Your Makeup Game 💄</a>
         </div>
     </section>
 
-    <section id="tribute">
-        <div class="card">
-            <h2 style="color: var(--pink);">My Message to You</h2>
-            <p><strong>"Nameesha, you don't need a king to be a Queen."</strong></p>
-            <p>You are the strongest person I know. Your independence is your power, and your heart is your beauty. Thank you for being my rock, my stylist, and my best friend.</p>
-            <p><i>Keep shining, keep slaying, and keep being YOU!</i></p>
-            <a href="#game" class="btn">Play a Quick Game! 💄</a>
-        </div>
-    </section>
-
-    <section id="game">
-        <h2>Catch the Lipstick!</h2>
-        <p>Score: <span id="score">0</span></p>
-        <div id="game-container">
-            <div id="basket">👛</div>
-        </div>
-        <p>Move your mouse/touch inside the box to catch the items!</p>
-        <a href="#home" class="btn">Back to Top</a>
+    <section id="game-section">
+        <h2 style="color: var(--deep-rose);">Makeup Match Challenge</h2>
+        <p>Match the cute makeup stickers to win!</p>
+        <div class="game-grid" id="grid"></div>
+        <button class="btn" onclick="resetGame()">Restart Game</button>
     </section>
 
     <script>
-        // Game Logic
-        const container = document.getElementById('game-container');
-        const basket = document.getElementById('basket');
-        const scoreElement = document.getElementById('score');
-        let score = 0;
+        const icons = ['💄', '💅', '🎨', '💋', '💄', '💅', '🎨', '💋'];
+        let flippedCards = [];
+        let matchedPairs = 0;
 
-        // Move Basket
-        container.addEventListener('mousemove', (e) => {
-            let rect = container.getBoundingClientRect();
-            let x = e.clientX - rect.left - 25;
-            if (x > 0 && x < 250) {
-                basket.style.left = x + 'px';
-            }
-        });
-
-        // Drop Items
-        function createItem() {
-            const item = document.createElement('div');
-            item.innerText = '💄';
-            item.className = 'item';
-            item.style.left = Math.random() * 270 + 'px';
-            item.style.top = '0px';
-            container.appendChild(item);
-
-            let fallInterval = setInterval(() => {
-                let top = parseInt(item.style.top);
-                if (top > 350) {
-                    let basketX = parseInt(basket.style.left);
-                    let itemX = parseInt(item.style.left);
-                    
-                    if (itemX >= basketX - 20 && itemX <= basketX + 40) {
-                        score++;
-                        scoreElement.innerText = score;
-                    }
-                    clearInterval(fallInterval);
-                    item.remove();
-                }
-                item.style.top = (top + 5) + 'px';
-            }, 30;
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
         }
 
-        setInterval(createItem, 1500);
+        function createGame() {
+            const grid = document.getElementById('grid');
+            const shuffledIcons = shuffle([...icons]);
+            grid.innerHTML = '';
+            
+            shuffledIcons.forEach((icon, index) => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.icon = icon;
+                card.innerHTML = icon;
+                card.onclick = () => flipCard(card);
+                grid.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+                flippedCards.push(card);
+
+                if (flippedCards.length === 2) {
+                    setTimeout(checkMatch, 600);
+                }
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.icon === card2.dataset.icon) {
+                matchedPairs++;
+                if (matchedPairs === icons.length / 2) {
+                    alert("You're a Pro, Nameesha! Just like your makeup skills! 💅✨");
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+            }
+            flippedCards = [];
+        }
+
+        function resetGame() {
+            matchedPairs = 0;
+            createGame();
+        }
+
+        // Initialize Game
+        createGame();
     </script>
 </body>
 </html>
