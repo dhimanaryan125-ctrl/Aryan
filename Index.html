@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Favorite Person ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff5f5;
+            color: #5d4037;
+            margin: 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #ffccd5;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #d63384;
+            font-weight: bold;
+        }
+        section {
+            display: none;
+            padding: 50px 20px;
+            animation: fadeIn 0.5s;
+        }
+        section.active { display: block; }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        button {
+            background-color: #ff8fa3;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background-color: #ffb3c1; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        h1 { color: #c9184a; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    | <a href="#" onclick="showPage('vent')">Vent</a>
+    | <a href="#" onclick="showPage('memories')">Memories</a>
+    | <a href="#" onclick="showPage('coupons')">Coupons</a>
+    | <a href="#" onclick="showPage('distract')">Relax</a>
+</nav>
+
+<section id="home" class="active">
+    <h1>Hey Beautiful ❤️</h1>
+    <div class="card">
+        <p>I know you're feeling a bit under the weather today, so I built this little corner of the internet just for you.</p>
+        <p>Take a deep breath. You are strong, you are loved, and I'm right here with you.</p>
+        <p>✨ <b>Tip:</b> Check the "Coupons" tab!</p>
+    </div>
+</section>
+
+<section id="vent">
+    <h1>Release the Stress</h1>
+    <div class="card">
+        <p>Type whatever is bothering you (or the pain) into this box and hit "Delete" to make it disappear.</p>
+        <textarea id="ventText" rows="4" style="width:90%; border-radius:10px; border: 1px solid #ffccd5; padding: 10px;"></textarea><br><br>
+        <button onclick="document.getElementById('ventText').value=''">Delete the Pain! 💨</button>
+    </div>
+</section>
+
+<section id="memories">
+    <h1>Why You're Amazing</h1>
+    <div class="card">
+        <ul style="text-align: left; display: inline-block;">
+            <li>🌟 Your smile literally lights up my day.</li>
+            <li>🍰 You're the sweetest person I know.</li>
+            <li>🦁 You're incredibly brave, even when you don't feel like it.</li>
+            <li>🌈 You make my world colorful.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="coupons">
+    <h1>Your Special Vouchers</h1>
+    <p>Valid whenever you need them!</p>
+    <div class="card">🎟️ <b>1x Full Body Massage</b></div>
+    <div class="card">🎟️ <b>1x "I'll go get the snacks" Pass</b></div>
+    <div class="card">🎟️ <b>1x Movie Marathon Choice</b></div>
+    <div class="card">🎟️ <b>1x Unlimited Cuddles</b></div>
+</section>
+
+<section id="distract">
+    <h1>The Cozy List</h1>
+    <div class="card">
+        <h3>To-Do List:</h3>
+        <p>1. Put on your fuzzy socks. 🧦</p>
+        <p>2. Drink some warm ginger tea. ☕</p>
+        <p>3. Choose a Ghibli movie to watch. 📽️</p>
+        <p>4. Remember that this pain is temporary.</p>
+    </div>
+</section>
+
+<script>
+    function showPage(pageId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('section');
+        sections.forEach(sec => sec.classList.remove('active'));
+        
+        // Show the clicked section
+        document.getElementById(pageId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
 
