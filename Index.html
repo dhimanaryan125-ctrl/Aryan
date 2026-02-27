@@ -3,97 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Muskan | From Aryan</title>
+    <title>For Muskan | The Arymus Chapter</title>
     <style>
         :root {
-            --primary: #ff4b5c;
-            --secondary: #f9d5e5;
-            --dark: #2d3436;
+            --primary: #d63031;
+            --accent: #fd79a8;
+            --bg: #fff5f6;
+            --text: #2d3436;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Trebuchet MS', sans-serif;
             margin: 0;
-            background: var(--secondary);
-            color: var(--dark);
-            text-align: center;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
         }
-        .page { display: none; padding: 50px 20px; min-height: 100vh; }
-        .active { display: block; animation: fadeIn 0.8s; }
+        .page { display: none; padding: 40px 20px; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; }
+        .active { display: flex; animation: slideUp 0.6s ease-out; }
         
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        h1 { color: var(--primary); font-size: 3rem; }
+        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 10px; }
+        .arymus-tag { font-weight: bold; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
+
         .btn {
             background: var(--primary);
             color: white;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1.2rem;
-            margin-top: 20px;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(214, 48, 49, 0.3);
             transition: 0.3s;
         }
-        .btn:hover { transform: scale(1.1); }
+        .btn:hover { transform: translateY(-3px); background: #b32424; }
         
-        /* Game Styles */
-        #game-canvas { background: white; border: 2px solid var(--primary); margin: 20px auto; }
-        
-        .letter {
-            max-width: 600px;
-            margin: 0 auto;
+        /* The Letter Box */
+        .scroll-box {
+            max-width: 500px;
             background: white;
             padding: 30px;
+            border-left: 5px solid var(--primary);
             border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            line-height: 1.6;
-            font-style: italic;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: left;
+            line-height: 1.8;
         }
+
+        /* Heart Game */
+        #game-box {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background: #fff;
+            border: 2px dashed var(--accent);
+            position: relative;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        #moving-heart { position: absolute; font-size: 40px; cursor: pointer; transition: 0.2s; }
+
+        /* Floating Animation */
+        .floating { animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <section id="p1" class="page active">
-        <h1>Hey Muskan... ❤️</h1>
-        <p>I know I messed up. Can you give me 5 minutes to explain?</p>
-        <div style="font-size: 50px;">🥺</div>
-        <button class="btn" onclick="showPage('p2')">Enter Aryan's Heart</button>
+        <div class="arymus-tag">#Arymus Connection</div>
+        <h1 class="floating">Hey Muskan... ✨</h1>
+        <p>I built this little corner of the internet just for you.</p>
+        <p>Before you say anything, please click below.</p>
+        <button class="btn" onclick="showPage('p2')">Listen to Aryan</button>
     </section>
 
     <section id="p2" class="page">
-        <h1>The #AryMus Truth</h1>
-        <div class="letter">
-            <p>Dearest Muskan,</p>
-            <p>They say "To err is human," but to hurt you feels like the biggest mistake of my life. I've been thinking about <b>#AryMus</b> (Aryan + Muskan) and how incomplete it is without your smile. I’m sorry for being [last night]. You deserve the best version of me, and I promise to work on it.</p>
-            <p>Will you please forgive your goofy Aryan?</p>
-        </div
-        <button class="btn" onclick="showPage('p3')">A Small Memory Game?</button>
+        <h1>I'm Sorry, Muskan</h1>
+        <div class="scroll-box">
+            <p>To my favorite person,</p>
+            <p>I know my actions lately weren't the best, and I hate that I caused a frown on the face I love most. **Arymus** isn't just a name; it's a promise that Aryan is incomplete without Muskan.</p>
+            <p>I’m owning up to my mistake. I miss our laughs, our vibe, and "us." Can we hit the reset button?</p>
+            <p><i>Always yours, <br>Aryan</i></p>
+        </div>
+        <button class="btn" onclick="showPage('p3')">Next: A Challenge</button>
     </section>
 
     <section id="p3" class="page">
-        <h1>Catch My Love</h1>
-        <p>Catch 5 hearts to unlock a surprise!</p>
-        <div id="game-area" style="position: relative; height: 300px; background: #fff; overflow: hidden; border-radius: 20px;">
-            <div id="heart" onclick="catchHeart()" style="position: absolute; cursor: pointer; font-size: 40px;">❤️</div>
+        <h1>Catch My Heart</h1>
+        <p>I'm trying to send you love, but it's a bit jumpy! Catch it 5 times.</p>
+        <div id="game-box">
+            <div id="moving-heart" onclick="countClick()">❤️</div>
         </div>
-        <p>Score: <span id="score">0</span>/5</p>
-        <button id="next-btn" class="btn" style="display:none;" onclick="showPage('p4')">You Won! See Surprise</button>
+        <p>Hearts Caught: <span id="score">0</span>/5</p>
+        <button id="gift-btn" class="btn" style="display:none;" onclick="showPage('p4')">Claim Your Prize 🎁</button>
     </section>
 
     <section id="p4" class="page">
-        <h1>Surprise! 🎁</h1>
-        <p>Since I can't be there to give you a real hug right now...</p>
-        <div style="font-size: 100px;">🤗</div>
-        <h3>Coupon Code: NO_MORE_FIGHTS</h3>
-        <p>This coupon entitles Muskan to one <b>Mega Treat</b> and <b>Infinite Hugs</b> from Aryan.</p>
-        <button class="btn" onclick="showPage('p5')">One Last Thing</button>
+        <h1>A Gift for Arymus</h1>
+        <div style="background: white; border: 2px solid gold; padding: 20px; border-radius: 10px;">
+            <h2 style="margin: 0; color: #d4af37;">GOLDEN TICKET</h2>
+            <hr>
+            <p>This ticket entitles <b>Muskan</b> to:</p>
+            <ul style="text-align: left;">
+                <li>One "Win any Argument" pass</li>
+                <li>Her favorite dessert (on Aryan)</li>
+                <li>Unlimited 24/7 support & care</li>
+            </ul>
+            <small>Valid forever because you're special.</small>
+        </div>
+        <button class="btn" onclick="showPage('p5')">The Final Question</button>
     </section>
 
     <section id="p5" class="page">
-        <h1>Still Mad?</h1>
-        <p>Click 'No' if you forgive me. (Try clicking 'Yes' if you dare!)</p>
-        <button class="btn" onclick="alert('Yay! I love you MusAry!')">No, I Forgive You ❤️</button>
-        <button class="btn" id="run-btn" onmouseover="moveButton()">Yes, I'm Mad 😡</button>
+        <h1>Are we okay? 🥺</h1>
+        <p>The **Arymus** bond is too strong to break over one mistake.</p>
+        <div style="display: flex; gap: 20px;">
+            <button class="btn" style="background: #2ecc71;" onclick="alert('You just made Aryan the happiest guy! I love you!')">Yes, I Forgive You</button>
+            <button class="btn" id="no-btn" onmouseover="moveNo()">No, still mad</button>
+        </div>
     </section>
 
     <script>
@@ -102,31 +132,27 @@
             document.getElementById(id).classList.add('active');
         }
 
-        // Game Logic
+        // Heart Game Logic
         let score = 0;
-        function catchHeart() {
+        function countClick() {
             score++;
             document.getElementById('score').innerText = score;
             if(score >= 5) {
-                document.getElementById('heart').style.display = 'none';
-                document.getElementById('next-btn').style.display = 'inline-block';
+                document.getElementById('moving-heart').style.display = 'none';
+                document.getElementById('gift-btn').style.display = 'block';
             } else {
-                moveHeart();
+                let h = document.getElementById('moving-heart');
+                h.style.top = Math.random() * 230 + "px";
+                h.style.left = Math.random() * 80 + "%";
             }
         }
 
-        function moveHeart() {
-            const h = document.getElementById('heart');
-            h.style.top = Math.random() * 250 + "px";
-            h.style.left = Math.random() * 80 + "%";
-        }
-
-        // Runaway Button Logic
-        function moveButton() {
-            const btn = document.getElementById('run-btn');
+        // The "No" button that runs away
+        function moveNo() {
+            let btn = document.getElementById('no-btn');
             btn.style.position = 'absolute';
-            btn.style.top = Math.random() * 80 + "vh";
-            btn.style.left = Math.random() * 80 + "vw";
+            btn.style.left = Math.random() * 70 + 'vw';
+            btn.style.top = Math.random() * 70 + 'vh';
         }
     </script>
 </body>
