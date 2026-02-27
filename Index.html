@@ -3,126 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Favorite Person ❤️</title>
+    <title>For My Muskan | From Aryan</title>
     <style>
+        :root {
+            --primary: #ff4b5c;
+            --secondary: #f9d5e5;
+            --dark: #2d3436;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fff5f5;
-            color: #5d4037;
             margin: 0;
+            background: var(--secondary);
+            color: var(--dark);
             text-align: center;
         }
-        nav {
-            background-color: #ffccd5;
-            padding: 15px;
-            position: sticky;
-            top: 0;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #d63384;
-            font-weight: bold;
-        }
-        section {
-            display: none;
-            padding: 50px 20px;
-            animation: fadeIn 0.5s;
-        }
-        section.active { display: block; }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            max-width: 500px;
-            margin: 20px auto;
-        }
-        button {
-            background-color: #ff8fa3;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover { background-color: #ffb3c1; }
+        .page { display: none; padding: 50px 20px; min-height: 100vh; }
+        .active { display: block; animation: fadeIn 0.8s; }
+        
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        h1 { color: #c9184a; }
+
+        h1 { color: var(--primary); font-size: 3rem; }
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover { transform: scale(1.1); }
+        
+        /* Game Styles */
+        #game-canvas { background: white; border: 2px solid var(--primary); margin: 20px auto; }
+        
+        .letter {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            line-height: 1.6;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="#" onclick="showPage('home')">Home</a>
-    | <a href="#" onclick="showPage('vent')">Vent</a>
-    | <a href="#" onclick="showPage('memories')">Memories</a>
-    | <a href="#" onclick="showPage('coupons')">Coupons</a>
-    | <a href="#" onclick="showPage('distract')">Relax</a>
-</nav>
+    <section id="p1" class="page active">
+        <h1>Hey Muskan... ❤️</h1>
+        <p>I know I messed up. Can you give me 5 minutes to explain?</p>
+        <div style="font-size: 50px;">🥺</div>
+        <button class="btn" onclick="showPage('p2')">Enter Aryan's Heart</button>
+    </section>
 
-<section id="home" class="active">
-    <h1>Hey Beautiful ❤️</h1>
-    <div class="card">
-        <p>I know you're feeling a bit under the weather today, so I built this little corner of the internet just for you.</p>
-        <p>Take a deep breath. You are strong, you are loved, and I'm right here with you.</p>
-        <p>✨ <b>Tip:</b> Check the "Coupons" tab!</p>
-    </div>
-</section>
+    <section id="p2" class="page">
+        <h1>The #AryKan Truth</h1>
+        <div class="letter">
+            <p>Dearest Muskan,</p>
+            <p>They say "To err is human," but to hurt you feels like the biggest mistake of my life. I've been thinking about <b>#AryKan</b> (Aryan + Muskan) and how incomplete it is without your smile. I’m sorry for being [Insert Mistake Here]. You deserve the best version of me, and I promise to work on it.</p>
+            <p>Will you please forgive your goofy Aryan?</p>
+        </div>
+        <button class="btn" onclick="showPage('p3')">A Small Memory Game?</button>
+    </section>
 
-<section id="vent">
-    <h1>Release the Stress</h1>
-    <div class="card">
-        <p>Type whatever is bothering you (or the pain) into this box and hit "Delete" to make it disappear.</p>
-        <textarea id="ventText" rows="4" style="width:90%; border-radius:10px; border: 1px solid #ffccd5; padding: 10px;"></textarea><br><br>
-        <button onclick="document.getElementById('ventText').value=''">Delete the Pain! 💨</button>
-    </div>
-</section>
+    <section id="p3" class="page">
+        <h1>Catch My Love</h1>
+        <p>Catch 5 hearts to unlock a surprise!</p>
+        <div id="game-area" style="position: relative; height: 300px; background: #fff; overflow: hidden; border-radius: 20px;">
+            <div id="heart" onclick="catchHeart()" style="position: absolute; cursor: pointer; font-size: 40px;">❤️</div>
+        </div>
+        <p>Score: <span id="score">0</span>/5</p>
+        <button id="next-btn" class="btn" style="display:none;" onclick="showPage('p4')">You Won! See Surprise</button>
+    </section>
 
-<section id="memories">
-    <h1>Why You're Amazing</h1>
-    <div class="card">
-        <ul style="text-align: left; display: inline-block;">
-            <li>🌟 Your smile literally lights up my day.</li>
-            <li>🍰 You're the sweetest person I know.</li>
-            <li>🦁 You're incredibly brave, even when you don't feel like it.</li>
-            <li>🌈 You make my world colorful.</li>
-        </ul>
-    </div>
-</section>
+    <section id="p4" class="page">
+        <h1>Surprise! 🎁</h1>
+        <p>Since I can't be there to give you a real hug right now...</p>
+        <div style="font-size: 100px;">🤗</div>
+        <h3>Coupon Code: NO_MORE_FIGHTS</h3>
+        <p>This coupon entitles Muskan to one <b>Mega Treat</b> and <b>Infinite Hugs</b> from Aryan.</p>
+        <button class="btn" onclick="showPage('p5')">One Last Thing</button>
+    </section>
 
-<section id="coupons">
-    <h1>Your Special Vouchers</h1>
-    <p>Valid whenever you need them!</p>
-    <div class="card">🎟️ <b>1x Full Body Massage</b></div>
-    <div class="card">🎟️ <b>1x "I'll go get the snacks" Pass</b></div>
-    <div class="card">🎟️ <b>1x Movie Marathon Choice</b></div>
-    <div class="card">🎟️ <b>1x Unlimited Cuddles</b></div>
-</section>
+    <section id="p5" class="page">
+        <h1>Still Mad?</h1>
+        <p>Click 'No' if you forgive me. (Try clicking 'Yes' if you dare!)</p>
+        <button class="btn" onclick="alert('Yay! I love you Muskan!')">No, I Forgive You ❤️</button>
+        <button class="btn" id="run-btn" onmouseover="moveButton()">Yes, I'm Mad 😡</button>
+    </section>
 
-<section id="distract">
-    <h1>The Cozy List</h1>
-    <div class="card">
-        <h3>To-Do List:</h3>
-        <p>1. Put on your fuzzy socks. 🧦</p>
-        <p>2. Drink some warm ginger tea. ☕</p>
-        <p>3. Choose a Ghibli movie to watch. 📽️</p>
-        <p>4. Remember that this pain is temporary.</p>
-    </div>
-</section>
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
 
-<script>
-    function showPage(pageId) {
-        // Hide all sections
-        const sections = document.querySelectorAll('section');
-        sections.forEach(sec => sec.classList.remove('active'));
-        
-        // Show the clicked section
-        document.getElementById(pageId).classList.add('active');
-    }
-</script>
+        // Game Logic
+        let score = 0;
+        function catchHeart() {
+            score++;
+            document.getElementById('score').innerText = score;
+            if(score >= 5) {
+                document.getElementById('heart').style.display = 'none';
+                document.getElementById('next-btn').style.display = 'inline-block';
+            } else {
+                moveHeart();
+            }
+        }
 
+        function moveHeart() {
+            const h = document.getElementById('heart');
+            h.style.top = Math.random() * 250 + "px";
+            h.style.left = Math.random() * 80 + "%";
+        }
+
+        // Runaway Button Logic
+        function moveButton() {
+            const btn = document.getElementById('run-btn');
+            btn.style.position = 'absolute';
+            btn.style.top = Math.random() * 80 + "vh";
+            btn.style.left = Math.random() * 80 + "vw";
+        }
+    </script>
 </body>
 </html>
-
