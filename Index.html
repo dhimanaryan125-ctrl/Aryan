@@ -3,156 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Muskan | The Arymus Chapter</title>
+    <title>Arymus: The Journey Home</title>
     <style>
         :root {
-            --primary: #d63031;
-            --accent: #fd79a8;
-            --bg: #fff5f6;
-            --text: #2d3436;
+            --primary: #6c5ce7;
+            --love: #ff7675;
+            --bg: #1a1a2e;
+            --text: #ffffff;
         }
         body {
-            font-family: 'Trebuchet MS', sans-serif;
-            margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            margin: 0; background: var(--bg); color: var(--text);
+            display: flex; align-items: center; justify-content: center; min-height: 100vh;
+            overflow: hidden;
         }
-        .page { display: none; padding: 40px 20px; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; }
-        .active { display: flex; animation: slideUp 0.6s ease-out; }
-        
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .container { text-align: center; width: 90%; max-width: 500px; }
+        .page { display: none; animation: fadeIn 0.5s ease-in; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 10px; }
-        .arymus-tag { font-weight: bold; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
+        /* Maze Styles */
+        #maze-container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 2px;
+            width: 300px;
+            margin: 20px auto;
+            border: 4px solid var(--primary);
+            background: #0f3460;
+        }
+        .cell { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .wall { background: #16213e; }
+        .player { background: var(--primary); border-radius: 50%; }
+        .goal { background: var(--love); border-radius: 50%; }
 
         .btn {
-            background: var(--primary);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            margin-top: 25px;
-            box-shadow: 0 4px 15px rgba(214, 48, 49, 0.3);
-            transition: 0.3s;
+            background: var(--love); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer;
+            font-weight: bold; margin-top: 20px; transition: 0.3s;
         }
-        .btn:hover { transform: translateY(-3px); background: #b32424; }
-        
-        /* The Letter Box */
-        .scroll-box {
-            max-width: 500px;
-            background: white;
-            padding: 30px;
-            border-left: 5px solid var(--primary);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: left;
-            line-height: 1.8;
-        }
+        .btn:hover { filter: brightness(1.2); transform: translateY(-3px); }
 
-        /* Heart Game */
-        #game-box {
-            width: 100%;
-            max-width: 400px;
-            height: 300px;
-            background: #fff;
-            border: 2px dashed var(--accent);
-            position: relative;
-            border-radius: 15px;
-            margin-top: 20px;
+        .letter-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px; border-radius: 15px; border: 1px solid var(--love);
+            backdrop-filter: blur(5px); line-height: 1.6;
         }
-        #moving-heart { position: absolute; font-size: 40px; cursor: pointer; transition: 0.2s; }
-
-        /* Floating Animation */
-        .floating { animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <section id="p1" class="page active">
-        <div class="arymus-tag">#Arymus Connection</div>
-        <h1 class="floating">Hey Muskan... ✨</h1>
-        <p>I built this little corner of the internet just for you.</p>
-        <p>Before you say anything, please click below.</p>
-        <button class="btn" onclick="showPage('p2')">Listen to Aryan</button>
-    </section>
-
-    <section id="p2" class="page">
-        <h1>I'm Sorry, Muskan</h1>
-        <div class="scroll-box">
-            <p>To my favorite person,</p>
-            <p>I know my actions lately weren't the best, and I hate that I caused a frown on the face I love most. **Arymus** isn't just a name; it's a promise that Aryan is incomplete without Muskan.</p>
-            <p>I’m owning up to my mistake. I miss our laughs, our vibe, and "us." Can we hit the reset button?</p>
-            <p><i>Always yours, <br>Aryan</i></p>
+    <div class="container">
+        <div id="p1" class="page active">
+            <h1 style="color: var(--love);">Arymus Maze</h1>
+            <p>Aryan is lost and needs to reach Muskan's heart. <br>Use the buttons to guide him!</p>
+            <button class="btn" onclick="showPage('p2')">Start Navigation</button>
         </div>
-        <button class="btn" onclick="showPage('p3')">Next: A Challenge</button>
-    </section>
 
-    <section id="p3" class="page">
-        <h1>Catch My Heart</h1>
-        <p>I'm trying to send you love, but it's a bit jumpy! Catch it 5 times.</p>
-        <div id="game-box">
-            <div id="moving-heart" onclick="countClick()">❤️</div>
+        <div id="p2" class="page">
+            <h3>Guide Aryan to Muskan</h3>
+            <div id="maze-container"></div>
+            <div style="margin-top: 15px;">
+                <button class="btn" style="padding: 10px 20px;" onclick="move('up')">↑</button><br>
+                <button class="btn" style="padding: 10px 20px;" onclick="move('left')">←</button>
+                <button class="btn" style="padding: 10px 20px;" onclick="move('down')">↓</button>
+                <button class="btn" style="padding: 10px 20px;" onclick="move('right')">→</button>
+            </div>
+            <p id="maze-msg">Don't hit the walls!</p>
         </div>
-        <p>Hearts Caught: <span id="score">0</span>/5</p>
-        <button id="gift-btn" class="btn" style="display:none;" onclick="showPage('p4')">Claim Your Prize 🎁</button>
-    </section>
 
-    <section id="p4" class="page">
-        <h1>A Gift for Arymus</h1>
-        <div style="background: white; border: 2px solid gold; padding: 20px; border-radius: 10px;">
-            <h2 style="margin: 0; color: #d4af37;">GOLDEN TICKET</h2>
-            <hr>
-            <p>This ticket entitles <b>Muskan</b> to:</p>
-            <ul style="text-align: left;">
-                <li>One "Win any Argument" pass</li>
-                <li>Her favorite dessert (on Aryan)</li>
-                <li>Unlimited 24/7 support & care</li>
-            </ul>
-            <small>Valid forever because you're special.</small>
+        <div id="p3" class="page">
+            <h1>You Found Me! ❤️</h1>
+            <div class="letter-card">
+                <p>Muskan, just like this maze, I know I've been a bit difficult lately. I hit some walls, took some wrong turns, and ended up hurting you.</p>
+                <p>I am deeply sorry for my mistake. <b>Arymus</b> is my favorite story, and I don't want this chapter to be a sad one.</p>
+                <p>You are my North Star. Please forgive me?</p>
+            </div>
+            <button class="btn" onclick="showPage('p4')">Next Surprise</button>
         </div>
-        <button class="btn" onclick="showPage('p5')">The Final Question</button>
-    </section>
 
-    <section id="p5" class="page">
-        <h1>Are we okay? 🥺</h1>
-        <p>The **Arymus** bond is too strong to break over one mistake.</p>
-        <div style="display: flex; gap: 20px;">
-            <button class="btn" style="background: #2ecc71;" onclick="alert('You just made Aryan the happiest guy! I love you!')">Yes, I Forgive You</button>
-            <button class="btn" id="no-btn" onmouseover="moveNo()">No, still mad</button>
+        <div id="p4" class="page">
+            <h1>The Arymus Promise</h1>
+            <div class="letter-card" style="font-size: 1.2rem;">
+                🤝 No more arguments for 48 hours.<br>
+                🍦 One unlimited dessert date.<br>
+                🧸 Infinite <i>"I'm sorry"</i> hugs.
+            </div>
+            <p>Click below to seal the deal.</p>
+            <button class="btn" onclick="alert('Deal Sealed! ❤️'); showPage('p5')">Accept Terms</button>
         </div>
-    </section>
+
+        <div id="p5" class="page">
+            <h1>Are we 100% cool?</h1>
+            <button class="btn" style="background: #2ecc71;" onclick="confettiEffect()">Yes! Love you!</button>
+            <button id="no-btn" class="btn" style="background: #95a5a6;" onmouseover="runAway()">Still Mad 😡</button>
+        </div>
+    </div>
 
     <script>
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+            if(id === 'p2') initMaze();
         }
 
-        // Heart Game Logic
-        let score = 0;
-        function countClick() {
-            score++;
-            document.getElementById('score').innerText = score;
-            if(score >= 5) {
-                document.getElementById('moving-heart').style.display = 'none';
-                document.getElementById('gift-btn').style.display = 'block';
-            } else {
-                let h = document.getElementById('moving-heart');
-                h.style.top = Math.random() * 230 + "px";
-                h.style.left = Math.random() * 80 + "%";
+        // MAZE LOGIC
+        const mazeData = [
+            [0,1,0,0,0,0,1,0,0,0],
+            [0,1,0,1,1,0,1,1,1,0],
+            [0,0,0,1,0,0,0,0,1,0],
+            [1,1,0,1,0,1,1,0,1,0],
+            [0,0,0,0,0,1,0,0,0,0],
+            [0,1,1,1,1,1,0,1,1,0],
+            [0,0,0,0,0,0,0,1,2,0]
+        ];
+        let playerPos = { x: 0, y: 0 };
+
+        function initMaze() {
+            const container = document.getElementById('maze-container');
+            container.innerHTML = '';
+            mazeData.forEach((row, y) => {
+                row.forEach((cell, x) => {
+                    const div = document.createElement('div');
+                    div.className = 'cell' + (cell === 1 ? ' wall' : '');
+                    if(x === playerPos.x && y === playerPos.y) div.innerHTML = '🕺';
+                    if(cell === 2) div.innerHTML = '❤️';
+                    container.appendChild(div);
+                });
+            });
+        }
+
+        function move(dir) {
+            let newX = playerPos.x;
+            let newY = playerPos.y;
+            if(dir === 'up') newY--;
+            if(dir === 'down') newY++;
+            if(dir === 'left') newX--;
+            if(dir === 'right') newX++;
+
+            if(newY >=0 && newY < mazeData.length && newX >=0 && newX < mazeData[0].length) {
+                if(mazeData[newY][newX] === 1) {
+                    document.getElementById('maze-msg').innerText = "Oops! Hit a wall! 🛑";
+                    playerPos = {x:0, y:0};
+                } else if(mazeData[newY][newX] === 2) {
+                    showPage('p3');
+                } else {
+                    playerPos = {x: newX, y: newY};
+                    document.getElementById('maze-msg').innerText = "Keep going! 🏃‍♂️";
+                }
+                initMaze();
             }
         }
 
-        // The "No" button that runs away
-        function moveNo() {
-            let btn = document.getElementById('no-btn');
+        function runAway() {
+            const btn = document.getElementById('no-btn');
             btn.style.position = 'absolute';
-            btn.style.left = Math.random() * 70 + 'vw';
-            btn.style.top = Math.random() * 70 + 'vh';
+            btn.style.left = Math.random() * 80 + 'vw';
+            btn.style.top = Math.random() * 80 + 'vh';
+        }
+
+        function confettiEffect() {
+            alert("Aryan x Muskan Forever! 🥂");
+            location.reload();
         }
     </script>
 </body>
