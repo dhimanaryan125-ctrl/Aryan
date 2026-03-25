@@ -3,79 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I'm Sorry Musary</title>
+    <title>For Musary</title>
     <style>
-        body {
+        body, html {
             margin: 0;
+            padding: 0;
+            height: 100%;
             background: #02040a;
-            color: #d1d1d1;
-            font-family: 'Georgia', serif;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        /* Starry Background */
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 50px;
-            border-radius: 20px;
-            max-width: 500px;
+            height: 100vh;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
         }
 
-        h2 {
-            color: #fff;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .shayari-box {
-            font-style: italic;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #eee;
-            margin: 30px 0;
-            padding: 20px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .sorry-text {
-            line-height: 1.6;
+        /* Glowing Moon */
+        .moon {
+            width: 180px;
+            height: 180px;
+            background: #fdfdfd;
+            border-radius: 50%;
+            box-shadow: 0 0 80px 20px rgba(255, 255, 255, 0.4), inset -20px -20px 40px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.5s ease;
             margin-bottom: 30px;
         }
 
-        .back-link {
-            color: #888;
-            text-decoration: none;
-            font-size: 0.9rem;
+        .moon:hover {
+            transform: scale(1.1);
         }
 
-        .back-link:hover { color: #fff; }
+        h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Please Forgive Me, Musary</h2>
-        <p class="sorry-text">
-            I know I messed up, and seeing you upset hurts me more than anything. 
-            The stars don't shine as bright when you're angry with me.
-        </p>
+    <div id="stars-container"></div>
 
-        <div class="shayari-box">
-            "Raat ki tanhayi mein sitaro se pucha maine,<br>
-            Kya wo maafi degi mujhe jo jaan se pyaari hai?<br>
-            Chand ne kaha, bas ek baar dil se pukaar ke dekh,<br>
-            Uske bina toh meri chandni bhi adhuri hai."
-        </div>
-
-        <p>Give me one chance to bring back that smile? ❤️</p>
-        <br>
-        <a href="index.html" class="back-link">Back to the Moon</a>
+    <div class="container">
+        <div class="moon" onclick="window.location.href='apology.html'"></div>
+        <h1>Even the moon looks lonely without you, Musary.</h1>
+        <a href="apology.html" class="btn">Click the moon to hear me</a>
     </div>
+
+    <script>
+        const container = document.getElementById('stars-container');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            container.appendChild(star);
+        }
+    </script>
 </body>
 </html>
