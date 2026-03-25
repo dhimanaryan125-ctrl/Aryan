@@ -3,80 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Musary</title>
+    <title>I'm Sorry Musary</title>
     <style>
         body {
             margin: 0;
-            padding: 0;
-            background: radial-gradient(circle at 50% 30%, #2c3e50 0%, #000000 100%);
-            height: 100vh;
+            background: #02040a;
+            color: #d1d1d1;
+            font-family: 'Georgia', serif;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            color: white;
-            font-family: 'Georgia', serif;
+            min-height: 100vh;
         }
 
-        /* The Moon */
-        .moon {
-            width: 150px;
-            height: 150px;
-            background: #f1f1f1;
-            border-radius: 50%;
-            box-shadow: 0 0 60px 20px rgba(255, 255, 255, 0.4);
-            margin-bottom: 50px;
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
         }
 
-        /* Twinkling Stars */
-        .stars {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 5px white;
-            animation: twinkle 2s infinite ease-in-out;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        .btn {
-            padding: 15px 30px;
-            background: transparent;
-            border: 2px solid #fff;
+        h2 {
             color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            border-radius: 25px;
-            transition: 0.3s;
-            cursor: pointer;
+            font-size: 2rem;
+            margin-bottom: 20px;
         }
 
-        .btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 15px white;
+        .shayari-box {
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #eee;
+            margin: 30px 0;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
+
+        .sorry-text {
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover { color: #fff; }
     </style>
 </head>
 <body>
-    <script>
-        for (let i = 0; i < 100; i++) {
-            let star = document.createElement('div');
-            star.className = 'stars';
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(star);
-        }
-    </script>
+    <div class="card">
+        <h2>Please Forgive Me, Musary</h2>
+        <p class="sorry-text">
+            I know I messed up, and seeing you upset hurts me more than anything. 
+            The stars don't shine as bright when you're angry with me.
+        </p>
 
-    <div class="moon"></div>
-    <h1>Under the same moon, I'm waiting...</h1>
-    <a href="apology.html" class="btn">Please Hear Me Out, Musary</a>
+        <div class="shayari-box">
+            "Raat ki tanhayi mein sitaro se pucha maine,<br>
+            Kya wo maafi degi mujhe jo jaan se pyaari hai?<br>
+            Chand ne kaha, bas ek baar dil se pukaar ke dekh,<br>
+            Uske bina toh meri chandni bhi adhuri hai."
+        </div>
+
+        <p>Give me one chance to bring back that smile? ❤️</p>
+        <br>
+        <a href="index.html" class="back-link">Back to the Moon</a>
+    </div>
 </body>
 </html>
